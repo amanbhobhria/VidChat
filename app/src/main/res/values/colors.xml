@@ -7,4 +7,15 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+
+        <color name="primary">#128C7E</color> <!-- Primary Green -->
+        <color name="light">#25D366</color> <!-- Light Green -->
+        <color name="dark">#075E54</color> <!-- Dark Green -->
+        <color name="accent">#DCF8C6</color> <!-- Accent Green -->
+        <color name="background">#EDEDED</color> <!-- Background Grey -->
+        <color name="text">#34B7F1</color> <!-- Text Blue -->
+
+
+
 </resources>
