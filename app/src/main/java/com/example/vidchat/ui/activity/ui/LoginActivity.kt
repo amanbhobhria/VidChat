@@ -42,6 +42,8 @@ class LoginActivity : AppCompatActivity() {
 
 
 
+
+
         loginViewModel.loginState.observe(this) { state ->
             when (state) {
                 is LoginViewModel.LoginState.Loading -> {
@@ -53,9 +55,10 @@ class LoginActivity : AppCompatActivity() {
                     binding.loading.visibility = View.GONE
                     Toast.makeText(this, "Login successful!", Toast.LENGTH_SHORT).show()
                     // Navigate to HomeActivity
-                    val intent = Intent(this, MainActivity::class.java)
-                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                    startActivity(intent)
+
+                    saveLoginState(true)
+
+                     navigateToMainActivity()
                 }
 
                 is LoginViewModel.LoginState.Error -> {
