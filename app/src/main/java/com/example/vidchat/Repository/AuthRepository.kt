@@ -19,4 +19,16 @@ class AuthRepository {
         }
 
     }
+
+    suspend fun signup(email: String, password: String): Result<FirebaseUser?> {
+        return try {
+            val result = firebaseAuth.createUserWithEmailAndPassword(email, password).await()
+            Result.success(result.user)
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
+    }
+
+
+
 }

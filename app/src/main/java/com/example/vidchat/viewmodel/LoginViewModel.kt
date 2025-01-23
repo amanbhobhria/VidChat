@@ -13,6 +13,12 @@ class LoginViewModel(private val authRepository: AuthRepository):ViewModel() {
     private val _loginState = MutableLiveData<LoginState>()
     val loginState:LiveData<LoginState> get()=_loginState
 
+    private val _signupState = MutableLiveData<SignupState>()
+    val signupState: LiveData<SignupState> get() = _signupState
+
+
+
+
 
     fun login(email:String,password:String)
     {
@@ -34,6 +40,25 @@ class LoginViewModel(private val authRepository: AuthRepository):ViewModel() {
         }
     }
 
+    fun signup(email: String, password: String) {
+        if (email.isBlank() || password.isBlank()) {
+            _signupState.value = SignupState.Error("Email and Password must not be empty")
+            return
+        }
+
+        viewModelScope.launch {
+            _signupState.value = SignupState.Loading
+            val result = authRepository.signup(email, password)
+            result.onSuccess { user ->
+                _signupState.value = SignupState.Success(user)
+            }.onFailure { exception ->
+                _signupState.value = SignupState.Error(exception.message ?: "Signup failed")
+            }
+        }
+    }
+
+
+
 
     sealed class LoginState {
         object Loading:LoginState()
@@ -43,6 +68,14 @@ class LoginViewModel(private val authRepository: AuthRepository):ViewModel() {
 
 
     }
+
+
+    sealed class SignupState {
+        object Loading : SignupState()
+        data class Success(val user: FirebaseUser?) : SignupState()
+        data class Error(val message: String) : SignupState()
+    }
+
 
 
 
