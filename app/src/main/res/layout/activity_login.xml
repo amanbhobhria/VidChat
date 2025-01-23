@@ -92,12 +92,11 @@
         app:layout_constraintVertical_bias="0.2" />
 
 
-    <TextView
+    <Button
         android:id="@+id/signUpTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:enabled="false"
         android:text="@string/action_register"
         android:textColor="@color/dark"
         android:textStyle="bold"

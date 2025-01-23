@@ -6,6 +6,7 @@ import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.util.Patterns
 import android.view.View
 import android.widget.Toast
@@ -68,6 +69,7 @@ class LoginActivity : AppCompatActivity() {
 
 
         binding.login.setOnClickListener {
+            Log.d("LoginActivity##","Login1 PRessed")
             val email = binding.username.text.toString().trim()
             val password = binding.password.text.toString().trim()
 //            if (validateInput(email, password)) {
@@ -76,9 +78,8 @@ class LoginActivity : AppCompatActivity() {
         }
 
         binding.signUpTv.setOnClickListener {
-            val email = binding.username.text.toString().trim()
-            val password = binding.password.text.toString().trim()
-            val confirmPassword = binding.confirmPassword.text.toString().trim()
+            Log.d("LoginActivity##","SignupPressed")
+
 
 
 
@@ -86,8 +87,20 @@ class LoginActivity : AppCompatActivity() {
             binding.confirmPassword.visibility = View.VISIBLE
             binding.signUpTv.visibility = View.GONE
 
+
+
+
+
+
+
             binding.login.setOnClickListener {
 
+                Log.d("LoginActivity##","Login PRessed")
+
+
+                val email = binding.username.text.toString().trim()
+                val password = binding.password.text.toString().trim()
+                val confirmPassword = binding.confirmPassword.text.toString().trim()
                 if (password.equals(confirmPassword)) {
                     loginViewModel.signup(email, password)
                     binding.confirmPassword.visibility = View.GONE
